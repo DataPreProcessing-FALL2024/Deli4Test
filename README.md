@@ -6,11 +6,11 @@ https://github.com/DataPreProcessing-FALL2024/Deli2Test/raw/refs/heads/main/Data
 
 You can see the aggregation code here- https://datapreprocessing-fall2024.github.io/Deli4Test/.
 
-### **Aggregation Summary**
+## Aggregation Steps
 
 First, I loaded in the data set from Github and only kept columns of interest.
 
-#### **1 Group, 1 Function, 1 Input Variable**
+### **1 Group, 1 Function, 1 Input Variable**
 
 For this section, I looked at mean square footage by location.
 
@@ -22,10 +22,10 @@ Input Variable- Size in Square Feet
 Function- Mean
 
 
-After aggregating, I saved the output to an RDS file.
+After aggregating, I saved the output to an RDS file (output111.rds) within the 'finalOutput' folder.
 
 
-#### **2 Groups, 2 Functions, 1 Input Variable**
+### **2 Groups, 2 Functions, 1 Input Variable**
 
 For this section, I looked at mean and median price in BDT by location and whether or not the space is furnished.
 
@@ -37,10 +37,10 @@ Input Variable- Price in BDT
 Functions- Mean, Median
 
 
-After aggregating, I saved the output to an RDS file.
+After aggregating, I saved the output to an RDS file (output221.rds) within the 'finalOutput' folder.
 
 
-#### **1 Group, 2 Input Variables, Different Function For Each**
+### **1 Group, 2 Input Variables, Different Function For Each**
 
 For this section, I looked at the mean price and median size in square feet by the year the space was built.
 
@@ -51,5 +51,5 @@ Input Variables- Price in BDT, Size in Square Feet
 
 Functions- Mean for Price variable Median for Size variable
 
-
+After aggregating, I saved the output to an RDS file (output12f1f2.rds) within the 'finalOutput' folder.
 After aggregating, I saved the output to an RDS file.
