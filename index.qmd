@@ -9,6 +9,7 @@ First, we'll load in our Real Estate cleaned/formatted data set from Github.
 ```{r}
 library(dplyr)
 library(tidyverse)
+library(arrow)
 ```
 
 ```{r}
@@ -40,9 +41,10 @@ squarefootMeanByLocation =
 squarefootMeanByLocation
 ```
 
-Now, we'll save this resulting aggregation to an RDS file.
+Now, we'll save this resulting aggregation to an RDS file, a parquet file and a CSV file.
 
 ```{r}
+#RDS
 folder = "finalOutput"
 
 # Check if the folder exists
@@ -55,6 +57,17 @@ if (!dir.exists(folder)) {
   saveRDS(squarefootMeanByLocation,file.path(folder,"output111.rds"))
 
 }
+```
+
+```{r}
+#parquet
+arrow::write_parquet(squarefootMeanByLocation,
+                     sink = "output111.parquet")
+```
+
+```{r}
+#CSV
+write.csv(squarefootMeanByLocation,"output111.csv")
 ```
 
 #### 2 Groups, 2 Functions, 1 Input Variable
@@ -69,9 +82,10 @@ priceMeanMedianByLocationAndFurnished = aggregate(
 priceMeanMedianByLocationAndFurnished
 ```
 
-Now, we'll save the resulting aggregation to an RDS file.
+Now, we'll save the resulting aggregation to an RDS file, a parquet file and a CSV file.
 
 ```{r}
+#RDS
 folder = "finalOutput"
 
 # Check if the folder exists
@@ -84,6 +98,18 @@ if (!dir.exists(folder)) {
   saveRDS(priceMeanMedianByLocationAndFurnished,file.path(folder,"output221.rds"))
 
 }
+```
+
+```{r}
+#parquet
+#arrow::write_parquet(priceMeanMedianByLocationAndFurnished, 
+                     #sink = "output221.parquet")
+```
+
+```{r}
+#CSV
+write.csv(priceMeanMedianByLocationAndFurnished,
+          "output221.csv")
 ```
 
 #### 1 Group, 2 Input Variables, Different Function For Each
@@ -99,9 +125,10 @@ meanPricemedianSqftByYear = real_estate_data %>%
 meanPricemedianSqftByYear
 ```
 
-Now, we'll save the resulting aggregation to an RDS file.
+Now, we'll save the resulting aggregation to an RDS file, a parquet file and a CSV file.
 
 ```{r}
+#RDS
 folder = "finalOutput"
 
 # Check if the folder exists
@@ -114,4 +141,16 @@ if (!dir.exists(folder)) {
   saveRDS(meanPricemedianSqftByYear,file.path(folder,"output12f1f2.rds"))
 
 }
+```
+
+```{r}
+#parquet
+arrow::write_parquet(meanPricemedianSqftByYear,
+                     sink = "output12f1f2.parquet")
+```
+
+```{r}
+#CSV
+write.csv(meanPricemedianSqftByYear,
+          "output12f1f2.csv")
 ```
