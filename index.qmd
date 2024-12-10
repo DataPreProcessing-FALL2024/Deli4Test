@@ -1,0 +1,117 @@
+---
+title: "Deli4Test"
+---
+
+## Deliverable 4
+
+First, we'll load in our Real Estate cleaned/formatted data set from Github.
+
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+```{r}
+real_estate_link = "https://github.com/DataPreProcessing-FALL2024/Deli2Test/raw/refs/heads/main/DataCleanAndFormatted/Formatted_Real_Estate_Data.RDS"
+
+real_estate_data = readRDS(gzcon(url(real_estate_link)))
+head(real_estate_data)
+```
+
+Now, we will select only some columns of interest to keep for future aggregation.
+
+```{r}
+real_estate_data <- real_estate_data %>%
+  select(size_sqft, price_bdt, year_built, 
+         building_registration_type, furnished, location)
+```
+
+### Aggregation
+
+#### 1 Group, 1 Function, 1 Input Variable
+
+Mean square footage by location
+
+```{r}
+squarefootMeanByLocation = 
+  aggregate(data = real_estate_data, size_sqft ~ location,
+            function(x) mean = mean(x))
+
+squarefootMeanByLocation
+```
+
+Now, we'll save this resulting aggregation to an RDS file.
+
+```{r}
+folder = "finalOutput"
+
+# Check if the folder exists
+if (!dir.exists(folder)) {
+  # Create the folder
+  dir.create(folder)
+  saveRDS(squarefootMeanByLocation,file.path(folder,"output111.rds"))
+
+} else {
+  saveRDS(squarefootMeanByLocation,file.path(folder,"output111.rds"))
+
+}
+```
+
+#### 2 Groups, 2 Functions, 1 Input Variable
+
+Mean and median price by location and whether or not it's furnished
+
+```{r}
+priceMeanMedianByLocationAndFurnished = aggregate(
+  data = real_estate_data, price_bdt ~ location + furnished,
+  function(x) c(mean = mean(x), median = median(x)))
+
+priceMeanMedianByLocationAndFurnished
+```
+
+Now, we'll save the resulting aggregation to an RDS file.
+
+```{r}
+folder = "finalOutput"
+
+# Check if the folder exists
+if (!dir.exists(folder)) {
+  # Create the folder
+  dir.create(folder)
+  saveRDS(priceMeanMedianByLocationAndFurnished,file.path(folder,"output221.rds"))
+
+} else {
+  saveRDS(priceMeanMedianByLocationAndFurnished,file.path(folder,"output221.rds"))
+
+}
+```
+
+#### 1 Group, 2 Input Variables, Different Function For Each
+
+Mean price and median square footage by year built
+
+```{r}
+meanPricemedianSqftByYear = real_estate_data %>%
+  group_by(year_built) %>%
+  summarize(pricebdt_mean = mean(price_bdt),
+            sizesqft_median = median(size_sqft))
+
+meanPricemedianSqftByYear
+```
+
+Now, we'll save the resulting aggregation to an RDS file.
+
+```{r}
+folder = "finalOutput"
+
+# Check if the folder exists
+if (!dir.exists(folder)) {
+  # Create the folder
+  dir.create(folder)
+  saveRDS(meanPricemedianSqftByYear,file.path(folder,"output111.rds"))
+
+} else {
+  saveRDS(meanPricemedianSqftByYear,file.path(folder,"output12f1f2.rds"))
+
+}
+```
