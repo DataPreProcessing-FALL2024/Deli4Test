@@ -22,7 +22,7 @@ Input Variable- Size in Square Feet
 Function- Mean
 
 
-After aggregating, I saved the output to an RDS file (output111.rds) within the 'finalOutput' folder.
+After aggregating, I saved the output to an RDS file (output111.rds), a Parquet file (output111.parquet), and a CSV file (output111.csv) within the 'finalOutput' folder.
 
 
 ### **2 Groups, 2 Functions, 1 Input Variable**
@@ -37,7 +37,7 @@ Input Variable- Price in BDT
 Functions- Mean, Median
 
 
-After aggregating, I saved the output to an RDS file (output221.rds) within the 'finalOutput' folder.
+After aggregating, I saved the output to an RDS file (output221.rds), a Parquet file (output221.parquet), and a CSV file (output221.csv) within the 'finalOutput' folder.
 
 
 ### **1 Group, 2 Input Variables, Different Function For Each**
@@ -51,5 +51,4 @@ Input Variables- Price in BDT, Size in Square Feet
 
 Functions- Mean for Price variable Median for Size variable
 
-After aggregating, I saved the output to an RDS file (output12f1f2.rds) within the 'finalOutput' folder.
-After aggregating, I saved the output to an RDS file.
+After aggregating, I saved the output to an RDS file (output12f1f2.rds), a Parquet file (output12f1f2.parquet), and a CSV file (output12f1f2.csv) within the 'finalOutput' folder.
