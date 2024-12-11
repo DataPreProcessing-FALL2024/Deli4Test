@@ -102,8 +102,9 @@ if (!dir.exists(folder)) {
 
 ```{r}
 #parquet
-#arrow::write_parquet(priceMeanMedianByLocationAndFurnished, 
-                     #sink = "output221.parquet")
+priceMeanMedianByLocationAndFurnished_2 = do.call(data.frame,priceMeanMedianByLocationAndFurnished)
+priceMeanMedianByLocationAndFurnished_2
+arrow::write_parquet(priceMeanMedianByLocationAndFurnished_2,sink = "output221.parquet")
 ```
 
 ```{r}
